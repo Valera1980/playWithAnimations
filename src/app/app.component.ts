@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet, Router, Event, NavigationStart } from '@angular/router';
 import { routerTransition } from './animation/one';
 
@@ -10,23 +10,30 @@ import { routerTransition } from './animation/one';
 })
 export class AppComponent implements OnInit {
   title = 'betweenRouterAnimation';
-  start: boolean;
+  state = {open : false};
   prepareRoute(outlet: RouterOutlet) {
     return outlet.activatedRouteData;
   }
-  constructor(private activate: Router) {
+  constructor(
+    private activate: Router,
+    private _cd: ChangeDetectorRef
+    ) {
 
   }
   ngOnInit(): void {
     this.activate.events
       .subscribe((e: Event) => {
         if (e instanceof NavigationStart) {
-          this.start = true;
-          setTimeout(() => {
-            this.start = false;
-          }, 1500);
+          this.state = {open: true};
+          this._cd.detectChanges();
+          // setTimeout(() => {
+          //   this.start = false;
+          // }, 1500);
         }
       })
 
+  }
+  fff(): void {
+    // this.start = 'closed';
   }
 }

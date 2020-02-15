@@ -15,5 +15,5 @@
 <div  [@routerTransition]="prepareRoute(outlet)"> -->
 
     <router-outlet #outlet="outlet"></router-outlet>
-    <app-preloader *ngIf="start"></app-preloader>
+    <app-preloader [state]="state" (finishAnimation)="fff()"></app-preloader>
 <!-- </div> -->

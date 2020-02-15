@@ -1,1 +1,5 @@
-<div class="preloader"></div>
+<div [@startAnim]="state.open ? 'open' : 'closed'" (@startAnim.start)="start($event)" (@startAnim.done)="done($event)"></div>
+<div>{{state | json}}</div>
+<div class="sometest">uuuuuuuuuuuuuuuuuu</div>
+<div>didididididid</div>
+<h1>0000</h1>
